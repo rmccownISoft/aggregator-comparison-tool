@@ -1,0 +1,60 @@
+{
+	"name": "update-builder",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"build": "rollup -c rollup.config.js",
+		"watch": "rollup -w -c -m rollup.config.js",
+		"start": "node ./server/server.js",
+		"debug": "node --inspect-brk ./server/server.js",
+		"startdev": "nodemon --inspect-brk --exitcrash ./server/server.js",
+		"joibuild": "joi-sql --host=devdb.isoftdata.com --user=dsadofsky --password=H4rm1355 --schema=itrackenterprise --table=store",
+		"test-parse": "node ./test/test-parse.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.8.4",
+		"@babel/plugin-proposal-class-properties": "^7.8.3",
+		"@babel/plugin-transform-modules-commonjs": "^7.8.3",
+		"@rollup/plugin-commonjs": "^11.0.2",
+		"@rollup/plugin-node-resolve": "^7.1.1",
+		"camelize": "^1.0.0",
+		"nodemon": "^2.0.2",
+		"rollup": "^1.31.1",
+		"rollup-plugin-babel": "^4.3.3",
+		"rollup-plugin-string": "^3.0.0",
+		"rollup-watch": "^4.3.1"
+	},
+	"dependencies": {
+		"@isoftdata/button": "^1.1.2",
+		"@isoftdata/input": "^1.0.5",
+		"@isoftdata/pagination": "^2.0.2",
+		"@isoftdata/utility-db": "^2.2.0",
+		"clone": "^2.1.2",
+		"command-line-config": "^1.4.1",
+		"express": "^4.17.1",
+		"mysql": "^2.18.1",
+		"pretty-print-json": "^1.0.0",
+		"ractive-transitions-slide": "^0.4.0",
+		"snakeize": "^0.1.0",
+		"sql-concat": "^2.3.1",
+		"yup": "^0.28.1"
+	},
+	"nodemonconfig": {
+		"restartable": "rst",
+		"ignore": [
+			".git",
+			"node_modules/**/node_modules"
+		],
+		"verbose": true,
+		"execMap": {
+			"ts": "node --require ts-node/register"
+		},
+		"env": {
+			"NODE_ENV": "development"
+		},
+		"ext": "js,json,ts"
+	}
+}

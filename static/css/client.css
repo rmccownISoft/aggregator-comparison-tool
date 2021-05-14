@@ -1,0 +1,26 @@
+.textArea{
+    width:100%;
+}
+.textArea div{
+    float:left;
+    width:33%;
+    border:1px solid black;
+    padding:10px;
+    box-sizing: border-box;
+  }
+  .textArea div span{
+    display:block;
+    text-align: center;
+    font-size:18.0pt;
+  }
+  .textArea div textarea{
+    box-sizing: border-box;
+    min-height: 30rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    width:100%;
+  }
+  
+
+

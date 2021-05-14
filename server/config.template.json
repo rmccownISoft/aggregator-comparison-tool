@@ -1,0 +1,7 @@
+{
+	"webServerPort": 9001,
+	"database": {
+		"user": "",
+		"password": ""
+	}
+}

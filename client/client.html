@@ -1,0 +1,63 @@
+<div class="container-fluid">
+	<div class="card">
+		<label for="table">Choose table</label>
+		<select class="form-control" id="tableName" value="{{ selectedTable }}">
+			<option value="">Select Table</option>
+			{{ #htpTables }}
+			<option value="{{ this }}">{{ this.table }}</option>
+			{{ /htpTables }}
+		</select>
+	</div>
+	<!-- <div class="form-group">
+		{{ #tableColumns: num }}
+		<label for="inputBox">{{ tableColumns[num].name }}</label>
+		<input type="text" value="{{ tableColumns[num].columnValue }}" class="form-control">
+		{{ /tableColumns }}
+	</div> -->
+	<!-- <div class="form-group">
+		{{ #tableColumns: num }}
+		<label for="inputBox">{{ tableColumns[num] }}</label>
+		<input type="text" value="{{ columnValue }}" class="form-control">
+		{{ /tableColumns }}
+	</div> -->
+	<!-- <div>
+		<itButton class="btn-sm" on-click="@this.getRows()">Get Rows</itButton>
+	</div> -->
+	<div class="form-group">
+		{{ #tableColumns: num }}
+		<label for="inputBox">{{ tableColumns[num] }}</label>
+		<!-- how do we name the value? -->
+		<!-- <input type="text" value="{{ columnValue }}" class="form-control"> -->
+		{{#fieldValues}}
+		<input class="form-control" value="{{this}}" />
+		{{/fieldValues}}
+		{{ /tableColumns }}
+	</div>
+	<!-- <div>
+		{{#each tableColumns}}
+		<label>{{@key}}</label>
+		<input class="form-control" value="{{.}}" />
+		{{/each}}
+	</div> -->
+
+	<div>
+		<itButton class="btn-sm" on-click="@this.getRows()">Get Rows</itButton>
+	</div>
+	<div class="textArea">
+		<div>
+			<span>Replikwando Row</span>
+			<textarea name="" id="leftTextArea" cols="30"
+				rows="40">{{ JSON.stringify(replikwandoRow, null, 2) }}</textarea>
+		</div>
+		<div>
+			<span>Aggregator Row</span>
+			<textarea name="" id="centerTextArea" cols="30"
+				rows="40">{{ JSON.stringify(aggregatorRow, null, 2) }}</textarea>
+		</div>
+		<div>
+			<span>Aggregator Row Difference</span>
+			<textarea name="" id="rightTextArea" cols="30"
+				rows="40">{{ JSON.stringify(differenceRow, null, 2) }}</textarea>
+		</div>
+	</div>
+</div>

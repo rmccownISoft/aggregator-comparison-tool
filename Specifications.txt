@@ -1,0 +1,33 @@
+Needs:
+Node applications need to be able to find and run database updates (insert/update/alter)
+ISoft employees should easily be able to add new updates
+Synchronization tools to ensure that updates are run only once
+Should be able to read in a .json file of a particular format and a general .sql file and understand where Versions begin and end and be able to read query end sections
+Should be able to dump out a .json file or a .sql file with comment blocks for version start as well as query separators and json comment blocks for configuring versions
+
+UI:
+    * Top level UI is a file browse input to choose a JSON or SQL file.
+    * Upon parsing the selected file, each "version" in its own card.
+    * A top level action exsits to add a new version, which will look at the highest version number and increment from that.
+    * Each query is in a textarea within that card, with the ability to add/change/remove the query.
+    * 2 checkboxes are shown for each version that let the user adjust the haltVersionGroupOnError, haltScriptOnError options.
+    * I added a top level sort option to sort the version list and an options to "Expand Query Fields to Fit" which makes the textareas as many rows as the queries have lines.
+    * Finally, I added 2 top-level buttons to export to JSON and CSV.
+Todo:
+    * Client tool:
+        * Bring in shared components like input, button, textarea, checkbox, etc.
+        * Added any query modification we want to do(double semicolons?)
+        * Add additional checks on export?(checking for empty queries or versions with no queries, maybe?)
+        * Read/write special tokens to the csv files that mark certain things(some/all of the following):
+            * Query end
+            * Halt Version Group On Error
+            * Halt Script On Error
+        * Move to reading/committing to svn instead of taking/writing a local file?
+
+    Server-side:
+        * Testing queries somehow?
+        * Add svn read/commit hooks?
+        * Write the node module that can actually read in a json file of the spec this tool reads/writes and run the queries
+
+Optional:
+Some way to hash versioned schema fingerprints to see if the current database ACTUALLY matches a version
