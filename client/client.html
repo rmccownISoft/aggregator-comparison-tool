@@ -1,4 +1,66 @@
 <div class="container-fluid">
+	<div class="card mt-3">
+		<h4 class="card-header">Aggregator Comparison Tool</h4>
+		<div class="card-body">
+			<form>
+				<div class="form-group">
+					<label for="productCode">Product code</label>
+					<input class="form-control" value="{{ productCode }}" />
+				</div>
+				<div class="form-group">
+					<label for="table">Choose table</label>
+					<select class="form-control" id="tableName" value="{{ selectedTable }}">
+						<option value="">Select Table</option>
+						{{ #htpTables }}
+						<option value="{{ this }}">{{ this.table }}</option>
+						{{ /htpTables }}
+					</select>
+				</div>
+				<div class="form-group">
+					{{ #fields }}
+					<label for="inputBox">{{ label }}</label>
+					<input class="form-control" value="{{ value }}" />
+					{{ /fields }}
+				</div>
+				<div class="form-group">
+					<itButton class="btn-sm" on-click="@this.getRows(productCode, selectedTable, fields)">
+						Get Row
+					</itButton>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="leftTextArea">Replikwando Row</label>
+							<textarea class="form-control" id="leftTextArea" rows="20" readonly>
+								{{ JSON.stringify(replikwandoRow, null, 2) }}
+							</textarea>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="centerTextArea">Aggregator Row</label>
+							<textarea class="form-control" id="centerTextArea" rows="20" readonly>
+								{{ JSON.stringify(aggregatorRow, null, 2) }}
+							</textarea>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="rightTextArea">Difference Row</label>
+							<textarea class="form-control" id="rightTextArea" rows="20" readonly>
+								{{ JSON.stringify(differenceRow, null, 2) }}
+							</textarea>
+						</div>
+					</div>
+
+				</div>
+
+			</form>
+
+		</div>
+	</div>
+</div>
+<!-- <div class="container-fluid">
 	<div class="card">
 		<label for="table">Choose table</label>
 		<select class="form-control" id="tableName" value="{{ selectedTable }}">
@@ -8,41 +70,18 @@
 			{{ /htpTables }}
 		</select>
 	</div>
-	<!-- <div class="form-group">
-		{{ #tableColumns: num }}
-		<label for="inputBox">{{ tableColumns[num].name }}</label>
-		<input type="text" value="{{ tableColumns[num].columnValue }}" class="form-control">
-		{{ /tableColumns }}
-	</div> -->
-	<!-- <div class="form-group">
-		{{ #tableColumns: num }}
-		<label for="inputBox">{{ tableColumns[num] }}</label>
-		<input type="text" value="{{ columnValue }}" class="form-control">
-		{{ /tableColumns }}
-	</div> -->
-	<!-- <div>
-		<itButton class="btn-sm" on-click="@this.getRows()">Get Rows</itButton>
-	</div> -->
 	<div class="form-group">
-		{{ #tableColumns: num }}
-		<label for="inputBox">{{ tableColumns[num] }}</label>
-		<!-- how do we name the value? -->
-		<!-- <input type="text" value="{{ columnValue }}" class="form-control"> -->
-		{{#fieldValues}}
-		<input class="form-control" value="{{this}}" />
-		{{/fieldValues}}
-		{{ /tableColumns }}
+		{{ #fields }}
+		<label for="inputBox">{{ label }}</label>
+		<input class="form-control" value="{{ value }}" />
+		{{ /fields }}
 	</div>
-	<!-- <div>
-		{{#each tableColumns}}
-		<label>{{@key}}</label>
-		<input class="form-control" value="{{.}}" />
-		{{/each}}
-	</div> -->
-
 	<div>
-		<itButton class="btn-sm" on-click="@this.getRows()">Get Rows</itButton>
+		<itButton class="btn-sm" on-click="@this.getRows(selectedTable,fields)">
+			Get Rows
+		</itButton>
 	</div>
+
 	<div class="textArea">
 		<div>
 			<span>Replikwando Row</span>
@@ -60,4 +99,4 @@
 				rows="40">{{ JSON.stringify(differenceRow, null, 2) }}</textarea>
 		</div>
 	</div>
-</div>
+</div> -->
