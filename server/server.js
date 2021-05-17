@@ -56,10 +56,28 @@ function getDifference(origObj, newObj) {
 	}
 	return changes(newObj, origObj)
 }
-// TODO: Handle return if no matching row
 async function compareRows(aggregatorConnection, replikwandoConnection, finalQuery) {
 	const aggregatorRow = await queryRow(aggregatorConnection, finalQuery)
 	const replikwandoRow = await queryRow(replikwandoConnection, finalQuery)
+	if (aggregatorRow.length > 1 && replikwandoRow.length > 1) {
+		return {
+			aggregator: `${aggregatorRow.length} rows found`,
+			replikwando: `${replikwandoRow.length} rows found`,
+			difference: null,
+		}
+	} else if (aggregatorRow.length > 1) {
+		return {
+			aggregator: `${aggregatorRow.length} rows found`,
+			replikwando: replikwandoRow[0] || null,
+			difference: null,
+		}
+	} else if (replikwandoRow.length > 1) {
+		return {
+			aggregator: aggregatorRow[0] || null,
+			replikwando: `${replikwandoRow.length} rows found`,
+			difference: null,
+		}
+	}
 	const diff = getDifference(replikwandoRow, aggregatorRow)
 
 	return {
